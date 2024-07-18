@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random User Profile Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 2px;
+      text-align: center;
+    }
+
+    .profile-image img {
+      border-radius: 50%;
+      width: 150px;
+      height: 150px;
+      margin-top: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+
+    th {
+      background-color: #007bff;
+      color: #fff;
+      text-align: center;
+    }
+
+    #generateBtn {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #generateBtn:hover {
+      background-color: #0056b3;
+    }
+
+    @media screen and (max-width: 600px) {
+      .container {
+        width: 90%;
+        padding: 10px;
+      }
+      .profile-image img {
+        width: 120px;
+        height: 120px;
+      }
+    }
+
+    h1{
+        text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="profile" id="profile">
+    </div>
+    <button id="generateBtn">Generate Profile</button>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      function generateUserProfile() {
+        $.ajax({
+          url: 'https://randomuser.me/api/',
+          dataType: 'json',
+          success: function(data) {
+            var user = data.results[0];
+
+            var profileHTML = `
+              <div class="profile-image">
+                <img src="${user.picture.large}" alt="Profile Picture">
+              </div>
+              <div>
+                <h1>${user.name.title} ${user.name.first} ${user.name.last}</h1>
+                <table>
+                  <tr><th colspan="2">Profile Information</th></tr>
+                  <tr><td>Gender</td><td>${user.gender}</td></tr>
+                  <tr><td>Date of Birth</td><td>${user.dob.date}</td></tr>
+                  <tr><td>Age</td><td>${user.dob.age}</td></tr>
+                  <tr><td>Email</td><td>${user.email}</td></tr>
+                  <tr><td>Phone</td><td>${user.phone}</td></tr>
+                  <tr><td>Cell</td><td>${user.cell}</td></tr>
+                  <tr><td>Location</td><td>${user.location.street.number} ${user.location.street.name}, ${user.location.city}, ${user.location.state}, ${user.location.country}, ${user.location.postcode}</td></tr>
+                  <tr><td>Coordinates</td><td>Latitude ${user.location.coordinates.latitude}, Longitude ${user.location.coordinates.longitude}</td></tr>
+                  <tr><td>Timezone</td><td>${user.location.timezone.description}</td></tr>
+                  <tr><td>Registered Date</td><td>${user.registered.date}</td></tr>
+                  <tr><td>Nationality</td><td>${user.nat}</td></tr>
+                </table>
+              </div>
+            `;
+
+            $('#profile').html(profileHTML);
+          }
+        });
+      }
+
+      $('#generateBtn').on('click', function() {
+        generateUserProfile();
+      });
+    });
+  </script>
+</body>
+</html>
