@@ -20,6 +20,7 @@ A simple web application that generates random user profiles using the Random Us
 - HTML
 - CSS
 - JavaScript (jQuery)
+- AJAX
 - Random User Generator API
 
 ## Getting Started
