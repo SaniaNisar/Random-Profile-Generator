@@ -12,8 +12,14 @@ A simple web application that generates random user profiles using the Random Us
 ## How to Use
 
 1. Click the "Generate Profile" button to fetch a new user profile.
+![image](https://github.com/user-attachments/assets/b389244d-0fc4-4883-9fcd-91cf6b359ea8)
+
 2. View the generated profile details on the screen.
+![image](https://github.com/user-attachments/assets/f787576b-17bf-4862-a6e9-1e05e2cb6ed2)
+
 3. Repeat to fetch more profiles as needed.
+![image](https://github.com/user-attachments/assets/3c8e36bc-8133-4f55-b561-c9c0e3ac73c1)
+
 
 ## Technologies Used
 
